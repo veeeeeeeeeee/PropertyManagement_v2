@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2016 at 11:59 AM
+-- Generation Time: Oct 22, 2016 at 02:29 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -23,12 +23,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `client`
+-- Table structure for table `clients`
 --
 
-DROP TABLE IF EXISTS `client`;
-CREATE TABLE IF NOT EXISTS `client` (
-  `client_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `clients` (
+  `client_id` int(11) NOT NULL,
   `client_name` varchar(255) NOT NULL,
   `client_lname` varchar(255) NOT NULL,
   `client_email` varchar(100) DEFAULT NULL,
@@ -36,36 +35,25 @@ CREATE TABLE IF NOT EXISTS `client` (
   `client_street` varchar(255) DEFAULT NULL,
   `client_suburb` varchar(100) DEFAULT NULL,
   `client_state` varchar(10) DEFAULT NULL,
-  `client_pc` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`client_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `client`:
---
+  `client_pc` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `feature`
+-- Table structure for table `features`
 --
 
-DROP TABLE IF EXISTS `feature`;
-CREATE TABLE IF NOT EXISTS `feature` (
-  `feat_id` int(11) NOT NULL AUTO_INCREMENT,
-  `feat_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`feat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+CREATE TABLE `features` (
+  `feat_id` int(11) NOT NULL,
+  `feat_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `feature`:
+-- Dumping data for table `features`
 --
 
---
--- Dumping data for table `feature`
---
-
-INSERT INTO `feature` (`feat_id`, `feat_name`) VALUES
+INSERT INTO `features` (`feat_id`, `feat_name`) VALUES
 (10, 'bed'),
 (11, 'bath'),
 (12, 'carport'),
@@ -77,34 +65,25 @@ INSERT INTO `feature` (`feat_id`, `feat_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `property`
+-- Table structure for table `propertys`
 --
 
-DROP TABLE IF EXISTS `property`;
-CREATE TABLE IF NOT EXISTS `property` (
-  `prop_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `propertys` (
+  `prop_id` int(11) NOT NULL,
   `prop_street` varchar(100) NOT NULL,
   `prop_suburb` varchar(50) NOT NULL,
   `prop_state` varchar(5) NOT NULL,
   `prop_pc` varchar(6) NOT NULL,
   `prop_type` int(11) NOT NULL,
   `price` decimal(10,0) DEFAULT NULL,
-  `prop_desc` text NOT NULL,
-  PRIMARY KEY (`prop_id`),
-  KEY `prop_type` (`prop_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `prop_desc` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `property`:
---   `prop_type`
---       `type` -> `type_id`
+-- Dumping data for table `propertys`
 --
 
---
--- Dumping data for table `property`
---
-
-INSERT INTO `property` (`prop_id`, `prop_street`, `prop_suburb`, `prop_state`, `prop_pc`, `prop_type`, `price`, `prop_desc`) VALUES
+INSERT INTO `propertys` (`prop_id`, `prop_street`, `prop_suburb`, `prop_state`, `prop_pc`, `prop_type`, `price`, `prop_desc`) VALUES
 (2, '2 korowa street', 'sunshine', 'vic', '3020', 12, '1200000', 'some description'),
 (3, '9 flinders', 'melbourne cbd', 'vic', '3000', 13, '1100000', 'blah'),
 (6, '3 invermay grove', 'sunshine', 'vic', '3020', 12, '1500000', 'test description'),
@@ -113,11 +92,10 @@ INSERT INTO `property` (`prop_id`, `prop_street`, `prop_suburb`, `prop_state`, `
 (9, '900 dandenong road', 'hawthorne', 'vic', '3122', 11, '0', '');
 
 --
--- Triggers `property`
+-- Triggers `propertys`
 --
-DROP TRIGGER IF EXISTS `prop_del_trigger`;
 DELIMITER $$
-CREATE TRIGGER `prop_del_trigger` BEFORE DELETE ON `property` FOR EACH ROW begin
+CREATE TRIGGER `prop_del_trigger` BEFORE DELETE ON `propertys` FOR EACH ROW begin
 	delete from property_image where prop_id = old.prop_id;
     delete from property_feature where prop_id = old.prop_id;
 end
@@ -127,69 +105,43 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `property_feature`
+-- Table structure for table `property_features`
 --
 
-DROP TABLE IF EXISTS `property_feature`;
-CREATE TABLE IF NOT EXISTS `property_feature` (
+CREATE TABLE `property_features` (
   `prop_id` int(11) NOT NULL,
   `feat_id` int(11) NOT NULL,
-  `no_feat` int(11) NOT NULL,
-  PRIMARY KEY (`prop_id`,`feat_id`),
-  KEY `feat_id` (`feat_id`)
+  `no_feat` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_images`
+--
+
+CREATE TABLE `property_images` (
+  `img_id` int(11) NOT NULL,
+  `img_path` varchar(255) NOT NULL,
+  `prop_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `types`
+--
+
+CREATE TABLE `types` (
+  `type_id` int(11) NOT NULL,
+  `type_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `property_feature`:
---   `prop_id`
---       `property` -> `prop_id`
---   `feat_id`
---       `feature` -> `feat_id`
+-- Dumping data for table `types`
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `property_image`
---
-
-DROP TABLE IF EXISTS `property_image`;
-CREATE TABLE IF NOT EXISTS `property_image` (
-  `img_id` int(11) NOT NULL AUTO_INCREMENT,
-  `img_path` varchar(255) NOT NULL,
-  `prop_id` int(11) NOT NULL,
-  PRIMARY KEY (`img_id`),
-  KEY `prop_id` (`prop_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `property_image`:
---   `prop_id`
---       `property` -> `prop_id`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `type`
---
-
-DROP TABLE IF EXISTS `type`;
-CREATE TABLE IF NOT EXISTS `type` (
-  `type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type_name` varchar(30) NOT NULL,
-  PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `type`:
---
-
---
--- Dumping data for table `type`
---
-
-INSERT INTO `type` (`type_id`, `type_name`) VALUES
+INSERT INTO `types` (`type_id`, `type_name`) VALUES
 (10, 'house'),
 (11, 'unit'),
 (12, 'apartment'),
@@ -197,27 +149,99 @@ INSERT INTO `type` (`type_id`, `type_name`) VALUES
 (14, 'factory');
 
 --
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `clients`
+--
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`client_id`);
+
+--
+-- Indexes for table `features`
+--
+ALTER TABLE `features`
+  ADD PRIMARY KEY (`feat_id`);
+
+--
+-- Indexes for table `propertys`
+--
+ALTER TABLE `propertys`
+  ADD PRIMARY KEY (`prop_id`),
+  ADD KEY `prop_type` (`prop_type`);
+
+--
+-- Indexes for table `property_features`
+--
+ALTER TABLE `property_features`
+  ADD PRIMARY KEY (`prop_id`,`feat_id`),
+  ADD KEY `feat_id` (`feat_id`);
+
+--
+-- Indexes for table `property_images`
+--
+ALTER TABLE `property_images`
+  ADD PRIMARY KEY (`img_id`),
+  ADD KEY `prop_id` (`prop_id`);
+
+--
+-- Indexes for table `types`
+--
+ALTER TABLE `types`
+  ADD PRIMARY KEY (`type_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `features`
+--
+ALTER TABLE `features`
+  MODIFY `feat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `propertys`
+--
+ALTER TABLE `propertys`
+  MODIFY `prop_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `property_images`
+--
+ALTER TABLE `property_images`
+  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `types`
+--
+ALTER TABLE `types`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `property`
+-- Constraints for table `propertys`
 --
-ALTER TABLE `property`
-  ADD CONSTRAINT `property_ibfk_1` FOREIGN KEY (`prop_type`) REFERENCES `type` (`type_id`);
+ALTER TABLE `propertys`
+  ADD CONSTRAINT `propertys_ibfk_1` FOREIGN KEY (`prop_type`) REFERENCES `types` (`type_id`);
 
 --
--- Constraints for table `property_feature`
+-- Constraints for table `property_features`
 --
-ALTER TABLE `property_feature`
-  ADD CONSTRAINT `property_feature_ibfk_1` FOREIGN KEY (`prop_id`) REFERENCES `property` (`prop_id`),
-  ADD CONSTRAINT `property_feature_ibfk_2` FOREIGN KEY (`feat_id`) REFERENCES `feature` (`feat_id`);
+ALTER TABLE `property_features`
+  ADD CONSTRAINT `property_features_ibfk_1` FOREIGN KEY (`prop_id`) REFERENCES `propertys` (`prop_id`),
+  ADD CONSTRAINT `property_features_ibfk_2` FOREIGN KEY (`feat_id`) REFERENCES `features` (`feat_id`);
 
 --
--- Constraints for table `property_image`
+-- Constraints for table `property_images`
 --
-ALTER TABLE `property_image`
-  ADD CONSTRAINT `property_image_ibfk_1` FOREIGN KEY (`prop_id`) REFERENCES `property` (`prop_id`);
+ALTER TABLE `property_images`
+  ADD CONSTRAINT `property_images_ibfk_1` FOREIGN KEY (`prop_id`) REFERENCES `propertys` (`prop_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
