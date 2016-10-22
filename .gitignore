@@ -2,6 +2,6 @@
 /config/app.php
 /tmp/*
 /logs/*
-/*~
-/*.swp
-/*.swo
+*~
+*.swp
+*.swo

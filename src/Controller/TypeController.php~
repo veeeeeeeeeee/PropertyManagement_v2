@@ -1,0 +1,115 @@
+<?php
+
+namespace App\Controller;
+
+use App\Controller\AppController;
+
+class TypeController extends AppController {
+
+	/**
+	 * index() method
+	 *
+	 * @return \Cake\Network\Response|null
+	 */
+	public function index() {
+		$this->paginate = [
+			'contain' => [] // should be property?
+		];
+		$type = $this->paginate($this->Type);
+
+		$this->set(compact('type'));
+		$this->set('_serialize', ['type']);
+	}
+
+	/**
+	 * view() method
+	 *
+	 * @param string|null $id - Type ID
+	 * @return \Cake\Network\Response|null
+	 * @throws \Cake\Datasource\Exception\RecordNotFoundException when record is not found
+	 */
+	public function view($id = null) {
+		$type = $this->Type->get($id, [
+			'contain' => [] // should be property?
+		]);
+
+		$this->set('type', $type);
+		$this->set('_serialize', ['type']);
+	}
+
+	/**
+	 * add() method
+	 *
+	 * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise
+	 */
+	public function add() {
+		$type = $this->Type->newEntity();
+		if ($this->request->is('post')) {
+			$type = $this->Type->patchEntity($type, $this->request->data);
+			if ($this->Type->save($type)) {
+				$this->Flash->success(__('Type has been saved.'));
+
+				return $this->redirect(['action' => 'index']);
+			}
+			else {
+				$this->Flash->error(__('Type could not be saved. Please, try again.'));
+			}
+		}
+
+		$type = $this->Type->Types->find('list', ['limit' => 200]);
+		$this->set(compact('type', 'type'));
+		$this->set('_serialize', ['type']);
+	}
+
+	/**
+	 * edit() method
+	 *
+	 * @param string|null $id Type ID
+	 * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise
+	 * @throw \Cake\Network\Exception\NotFoundException When record not found
+	 */
+	public function edit($id = null) {
+		$type = $this->Type->get($id, [
+			'contain' => []
+		]);
+
+		if ($this->request->is(['patch', 'post', 'put'])) {
+			$type = $this->Type->patchEntity($type, $this->request->data);
+			if ($this->Type->save($type)) {
+				$this->Flash->success(__('Type has been saved.'));
+
+				return $this->redirect(['action' => 'index']);
+			}
+			else {
+				$this->Flash->error(__('Type could not be saved. Please, try again.'));
+			}
+		}
+
+		$type = $this->Type->Types->find('list', ['limit' => 200]);
+		$this->set(compact('type', 'type'));
+		$this->set('_serialize', ['type']);
+	}
+
+	/**
+	 * delete() method
+	 *
+	 * @param string|null $id Type ID
+	 * @return \Cake\Network\Response|null Redirects to index
+	 * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found
+	 */
+	public function delete($id = null) {
+		$this->request->allowMethod(['post', 'delete']);
+		$type = $this->Type->get($id);
+
+		if ($this->Type->delete($type)) {
+			$this->Flash->success(__('Type has been deleted.'));
+		}
+		else {
+			$this->Flash->error(__('Type could not be deleted. Please, try again.'));
+		}
+
+		return $this->redirect(['action' => 'index']);
+	}
+}
+
+?>
