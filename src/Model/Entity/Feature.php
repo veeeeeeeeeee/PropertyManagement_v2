@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * @property int $feature_id
  * @property string $feature_name
  *
- * @property \App\Model\Entity\Feat $feat
+ * @property \App\Model\Entity\Feature $parent_feature
  */
 class Feature extends Entity
 {

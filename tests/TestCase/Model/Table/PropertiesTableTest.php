@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PropertyFeaturesTable;
+use App\Model\Table\PropertiesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\PropertyFeaturesTable Test Case
+ * App\Model\Table\PropertiesTable Test Case
  */
-class PropertyFeaturesTableTest extends TestCase
+class PropertiesTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\PropertyFeaturesTable
+     * @var \App\Model\Table\PropertiesTable
      */
-    public $PropertyFeatures;
+    public $Properties;
 
     /**
      * Fixtures
@@ -24,9 +24,7 @@ class PropertyFeaturesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.property_features',
-        'app.propertys',
-        'app.features'
+        'app.properties'
     ];
 
     /**
@@ -37,8 +35,8 @@ class PropertyFeaturesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('PropertyFeatures') ? [] : ['className' => 'App\Model\Table\PropertyFeaturesTable'];
-        $this->PropertyFeatures = TableRegistry::get('PropertyFeatures', $config);
+        $config = TableRegistry::exists('Properties') ? [] : ['className' => 'App\Model\Table\PropertiesTable'];
+        $this->Properties = TableRegistry::get('Properties', $config);
     }
 
     /**
@@ -48,7 +46,7 @@ class PropertyFeaturesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->PropertyFeatures);
+        unset($this->Properties);
 
         parent::tearDown();
     }

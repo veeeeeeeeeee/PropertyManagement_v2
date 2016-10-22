@@ -1,13 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\PropertyFeaturesController;
+use App\Controller\PropertiesController;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
- * App\Controller\PropertyFeaturesController Test Case
+ * App\Controller\PropertiesController Test Case
  */
-class PropertyFeaturesControllerTest extends IntegrationTestCase
+class PropertiesControllerTest extends IntegrationTestCase
 {
 
     /**
@@ -16,9 +16,7 @@ class PropertyFeaturesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.property_features',
-        'app.propertys',
-        'app.features'
+        'app.properties'
     ];
 
     /**

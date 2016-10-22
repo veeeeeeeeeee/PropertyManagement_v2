@@ -25,7 +25,7 @@ class PropertyFeaturesFixture extends TestFixture
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['property_id', 'feature_id'], 'length' => []],
-            'property_features_ibfk_1' => ['type' => 'foreign', 'columns' => ['property_id'], 'references' => ['propertys', 'property_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'property_features_ibfk_1' => ['type' => 'foreign', 'columns' => ['property_id'], 'references' => ['properties', 'property_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
             'property_features_ibfk_2' => ['type' => 'foreign', 'columns' => ['feature_id'], 'references' => ['features', 'feature_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
