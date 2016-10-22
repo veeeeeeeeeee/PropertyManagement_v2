@@ -8,10 +8,8 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Property Images'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Property Images'), ['controller' => 'PropertyImages', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Property Image'), ['controller' => 'PropertyImages', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Propertys'), ['controller' => 'Propertys', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Property'), ['controller' => 'Propertys', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Parent Property Images'), ['controller' => 'PropertyImages', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Parent Property Image'), ['controller' => 'PropertyImages', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="propertyImages form large-9 medium-8 columns content">
@@ -20,7 +18,7 @@
         <legend><?= __('Edit Property Image') ?></legend>
         <?php
             echo $this->Form->input('property_image_path');
-            echo $this->Form->input('property_id', ['options' => $propertys]);
+            echo $this->Form->input('property_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

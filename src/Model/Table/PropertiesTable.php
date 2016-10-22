@@ -41,6 +41,13 @@ class PropertiesTable extends Table
             'foreignKey' => 'property_id',
             'joinType' => 'INNER'
         ]);
+
+		$this->belongsToMany('Features', [
+			'className' => 'Features',
+			'joinTable' => 'property_features',
+			'foreignKey' => 'property_id',
+			'targetForeignKey' => 'feature_id'
+		]);
     }
 
     /**
@@ -92,7 +99,7 @@ class PropertiesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['property_id'], 'Properties'));
+        $rules->add($rules->existsIn(['property_id'], 'ParentProperties'));
 
         return $rules;
     }

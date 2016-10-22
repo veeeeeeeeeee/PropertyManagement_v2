@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
  * PropertyImages Model
  *
  * @property \Cake\ORM\Association\BelongsTo $PropertyImages
- * @property \Cake\ORM\Association\BelongsTo $Propertys
+ * @property \Cake\ORM\Association\BelongsTo $Properties
  *
  * @method \App\Model\Entity\PropertyImage get($primaryKey, $options = [])
  * @method \App\Model\Entity\PropertyImage newEntity($data = null, array $options = [])
@@ -42,7 +42,7 @@ class PropertyImagesTable extends Table
             'foreignKey' => 'property_image_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Propertys', [
+        $this->belongsTo('Properties', [
             'foreignKey' => 'property_id',
             'joinType' => 'INNER'
         ]);
@@ -72,8 +72,8 @@ class PropertyImagesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['property_image_id'], 'ParentPropertyImages'));
-        $rules->add($rules->existsIn(['property_id'], 'Propertys'));
+        $rules->add($rules->existsIn(['property_image_id'], 'PropertyImages'));
+        $rules->add($rules->existsIn(['property_id'], 'Properties'));
 
         return $rules;
     }

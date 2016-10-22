@@ -89,8 +89,13 @@ class FeaturesController extends AppController
                 $this->Flash->error(__('The feature could not be saved. Please, try again.'));
             }
         }
+<<<<<<< HEAD
         $parentFeatures = $this->Features->ParentFeatures->find('list', ['limit' => 200]);
         $this->set(compact('feature', 'parentFeatures'));
+=======
+        $feats = $this->Features->ParentFeatures->find('list', ['limit' => 200]);
+        $this->set(compact('feature', 'feats'));
+>>>>>>> cake_models
         $this->set('_serialize', ['feature']);
     }
 

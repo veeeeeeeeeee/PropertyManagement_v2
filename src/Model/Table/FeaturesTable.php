@@ -41,6 +41,13 @@ class FeaturesTable extends Table
             'foreignKey' => 'feature_id',
             'joinType' => 'INNER'
         ]);
+
+		$this->belongsToMany('Properties', [
+			'className' => 'Properties',
+			'joinTable' => 'property_features',
+			'foreignKey' => 'feature_id',
+			'targetForeignKey' => 'property_id'
+		]);
     }
 
     /**
