@@ -16,7 +16,8 @@ class FeaturesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.features'
+        'app.features',
+        'app.feats'
     ];
 
     /**

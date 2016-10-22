@@ -24,7 +24,8 @@ class FeaturesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.features'
+        'app.features',
+        'app.feats'
     ];
 
     /**

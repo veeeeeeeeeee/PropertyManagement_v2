@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Properties Model
+ * Propertys Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Properties
  *
@@ -19,7 +19,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Property[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Property findOrCreate($search, callable $callback = null)
  */
-class PropertiesTable extends Table
+class PropertysTable extends Table
 {
 
     /**
@@ -32,12 +32,11 @@ class PropertiesTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('properties');
+        $this->table('propertys');
         $this->displayField('property_id');
         $this->primaryKey('property_id');
 
-        $this->belongsTo('ParentProperties', [
-			'className' => 'Properties',
+        $this->belongsTo('Properties', [
             'foreignKey' => 'property_id',
             'joinType' => 'INNER'
         ]);

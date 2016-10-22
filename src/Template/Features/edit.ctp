@@ -3,13 +3,11 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $feature->feature_id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $feature->feature_id)]
+                ['action' => 'delete', $feature->feat_id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $feature->feat_id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Features'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Parent Features'), ['controller' => 'Features', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Parent Feature'), ['controller' => 'Features', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="features form large-9 medium-8 columns content">
@@ -17,6 +15,7 @@
     <fieldset>
         <legend><?= __('Edit Feature') ?></legend>
         <?php
+            echo $this->Form->input('feature_id');
             echo $this->Form->input('feature_name');
         ?>
     </fieldset>

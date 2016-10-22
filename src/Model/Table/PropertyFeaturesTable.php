@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * PropertyFeatures Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Properties
+ * @property \Cake\ORM\Association\BelongsTo $Propertys
  * @property \Cake\ORM\Association\BelongsTo $Features
  *
  * @method \App\Model\Entity\PropertyFeature get($primaryKey, $options = [])
@@ -37,7 +37,7 @@ class PropertyFeaturesTable extends Table
         $this->displayField('prop_id');
         $this->primaryKey(['prop_id', 'feat_id']);
 
-        $this->belongsTo('Properties', [
+        $this->belongsTo('Propertys', [
             'foreignKey' => 'property_id',
             'joinType' => 'INNER'
         ]);
@@ -72,7 +72,7 @@ class PropertyFeaturesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['property_id'], 'Properties'));
+        $rules->add($rules->existsIn(['property_id'], 'Propertys'));
         $rules->add($rules->existsIn(['feature_id'], 'Features'));
 
         return $rules;

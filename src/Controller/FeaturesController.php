@@ -19,7 +19,7 @@ class FeaturesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['ParentFeatures']
+            'contain' => ['Feats']
         ];
         $features = $this->paginate($this->Features);
 
@@ -37,7 +37,7 @@ class FeaturesController extends AppController
     public function view($id = null)
     {
         $feature = $this->Features->get($id, [
-            'contain' => ['ParentFeatures']
+            'contain' => ['Feats']
         ]);
 
         $this->set('feature', $feature);
@@ -62,8 +62,8 @@ class FeaturesController extends AppController
                 $this->Flash->error(__('The feature could not be saved. Please, try again.'));
             }
         }
-        $parentFeatures = $this->Features->ParentFeatures->find('list', ['limit' => 200]);
-        $this->set(compact('feature', 'parentFeatures'));
+        $feats = $this->Features->Feats->find('list', ['limit' => 200]);
+        $this->set(compact('feature', 'feats'));
         $this->set('_serialize', ['feature']);
     }
 
@@ -89,8 +89,8 @@ class FeaturesController extends AppController
                 $this->Flash->error(__('The feature could not be saved. Please, try again.'));
             }
         }
-        $parentFeatures = $this->Features->ParentFeatures->find('list', ['limit' => 200]);
-        $this->set(compact('feature', 'parentFeatures'));
+        $feats = $this->Features->Feats->find('list', ['limit' => 200]);
+        $this->set(compact('feature', 'feats'));
         $this->set('_serialize', ['feature']);
     }
 

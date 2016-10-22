@@ -2,6 +2,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Property Feature'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Propertys'), ['controller' => 'Propertys', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Property'), ['controller' => 'Propertys', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Features'), ['controller' => 'Features', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Feature'), ['controller' => 'Features', 'action' => 'add']) ?></li>
     </ul>
@@ -21,7 +23,7 @@
             <?php foreach ($propertyFeatures as $propertyFeature): ?>
             <tr>
                 <td><?= $this->Number->format($propertyFeature->property_id) ?></td>
-                <td><?= $propertyFeature->has('feature') ? $this->Html->link($propertyFeature->feature->feature_id, ['controller' => 'Features', 'action' => 'view', $propertyFeature->feature->feature_id]) : '' ?></td>
+                <td><?= $this->Number->format($propertyFeature->feature_id) ?></td>
                 <td><?= $this->Number->format($propertyFeature->property_feature_no) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $propertyFeature->prop_id]) ?>

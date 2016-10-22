@@ -4,11 +4,11 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Properties Controller
+ * Propertys Controller
  *
- * @property \App\Model\Table\PropertiesTable $Properties
+ * @property \App\Model\Table\PropertysTable $Propertys
  */
-class PropertiesController extends AppController
+class PropertysController extends AppController
 {
 
     /**
@@ -19,12 +19,12 @@ class PropertiesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['ParentProperties']
+            'contain' => ['Properties']
         ];
-        $properties = $this->paginate($this->Properties);
+        $propertys = $this->paginate($this->Propertys);
 
-        $this->set(compact('properties'));
-        $this->set('_serialize', ['properties']);
+        $this->set(compact('propertys'));
+        $this->set('_serialize', ['propertys']);
     }
 
     /**
@@ -36,8 +36,8 @@ class PropertiesController extends AppController
      */
     public function view($id = null)
     {
-        $property = $this->Properties->get($id, [
-            'contain' => ['ParentProperties']
+        $property = $this->Propertys->get($id, [
+            'contain' => ['Properties']
         ]);
 
         $this->set('property', $property);
@@ -51,10 +51,10 @@ class PropertiesController extends AppController
      */
     public function add()
     {
-        $property = $this->Properties->newEntity();
+        $property = $this->Propertys->newEntity();
         if ($this->request->is('post')) {
-            $property = $this->Properties->patchEntity($property, $this->request->data);
-            if ($this->Properties->save($property)) {
+            $property = $this->Propertys->patchEntity($property, $this->request->data);
+            if ($this->Propertys->save($property)) {
                 $this->Flash->success(__('The property has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -62,7 +62,7 @@ class PropertiesController extends AppController
                 $this->Flash->error(__('The property could not be saved. Please, try again.'));
             }
         }
-        $properties = $this->Properties->ParentProperties->find('list', ['limit' => 200]);
+        $properties = $this->Propertys->Properties->find('list', ['limit' => 200]);
         $this->set(compact('property', 'properties'));
         $this->set('_serialize', ['property']);
     }
@@ -76,12 +76,12 @@ class PropertiesController extends AppController
      */
     public function edit($id = null)
     {
-        $property = $this->Properties->get($id, [
+        $property = $this->Propertys->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $property = $this->Properties->patchEntity($property, $this->request->data);
-            if ($this->Properties->save($property)) {
+            $property = $this->Propertys->patchEntity($property, $this->request->data);
+            if ($this->Propertys->save($property)) {
                 $this->Flash->success(__('The property has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -89,7 +89,7 @@ class PropertiesController extends AppController
                 $this->Flash->error(__('The property could not be saved. Please, try again.'));
             }
         }
-        $properties = $this->Properties->ParentProperties->find('list', ['limit' => 200]);
+        $properties = $this->Propertys->Properties->find('list', ['limit' => 200]);
         $this->set(compact('property', 'properties'));
         $this->set('_serialize', ['property']);
     }
@@ -104,8 +104,8 @@ class PropertiesController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $property = $this->Properties->get($id);
-        if ($this->Properties->delete($property)) {
+        $property = $this->Propertys->get($id);
+        if ($this->Propertys->delete($property)) {
             $this->Flash->success(__('The property has been deleted.'));
         } else {
             $this->Flash->error(__('The property could not be deleted. Please, try again.'));

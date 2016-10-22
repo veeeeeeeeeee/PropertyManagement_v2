@@ -17,12 +17,12 @@
         <tbody>
             <?php foreach ($features as $feature): ?>
             <tr>
-                <td><?= $feature->has('parent_feature') ? $this->Html->link($feature->parent_feature->feature_id, ['controller' => 'Features', 'action' => 'view', $feature->parent_feature->feature_id]) : '' ?></td>
+                <td><?= $this->Number->format($feature->feature_id) ?></td>
                 <td><?= h($feature->feature_name) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $feature->feature_id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $feature->feature_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $feature->feature_id], ['confirm' => __('Are you sure you want to delete # {0}?', $feature->feature_id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $feature->feat_id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $feature->feat_id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $feature->feat_id], ['confirm' => __('Are you sure you want to delete # {0}?', $feature->feat_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
