@@ -4,11 +4,11 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Client Controller
+ * Clients Controller
  *
- * @property \App\Model\Table\ClientTable $Client
+ * @property \App\Model\Table\ClientsTable $Clients
  */
-class ClientController extends AppController
+class ClientsController extends AppController
 {
 
     /**
@@ -19,12 +19,12 @@ class ClientController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Clients']
+            'contain' => ['ParentClients']
         ];
-        $client = $this->paginate($this->Client);
+        $clients = $this->paginate($this->Clients);
 
-        $this->set(compact('client'));
-        $this->set('_serialize', ['client']);
+        $this->set(compact('clients'));
+        $this->set('_serialize', ['clients']);
     }
 
     /**
@@ -36,8 +36,8 @@ class ClientController extends AppController
      */
     public function view($id = null)
     {
-        $client = $this->Client->get($id, [
-            'contain' => ['Clients']
+        $client = $this->Clients->get($id, [
+            'contain' => ['ParentClients']
         ]);
 
         $this->set('client', $client);
@@ -51,10 +51,10 @@ class ClientController extends AppController
      */
     public function add()
     {
-        $client = $this->Client->newEntity();
+        $client = $this->Clients->newEntity();
         if ($this->request->is('post')) {
-            $client = $this->Client->patchEntity($client, $this->request->data);
-            if ($this->Client->save($client)) {
+            $client = $this->Clients->patchEntity($client, $this->request->data);
+            if ($this->Clients->save($client)) {
                 $this->Flash->success(__('The client has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -62,7 +62,7 @@ class ClientController extends AppController
                 $this->Flash->error(__('The client could not be saved. Please, try again.'));
             }
         }
-        $clients = $this->Client->Clients->find('list', ['limit' => 200]);
+        $clients = $this->Clients->ParentClients->find('list', ['limit' => 200]);
         $this->set(compact('client', 'clients'));
         $this->set('_serialize', ['client']);
     }
@@ -76,12 +76,12 @@ class ClientController extends AppController
      */
     public function edit($id = null)
     {
-        $client = $this->Client->get($id, [
+        $client = $this->Clients->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $client = $this->Client->patchEntity($client, $this->request->data);
-            if ($this->Client->save($client)) {
+            $client = $this->Clients->patchEntity($client, $this->request->data);
+            if ($this->Clients->save($client)) {
                 $this->Flash->success(__('The client has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -89,7 +89,7 @@ class ClientController extends AppController
                 $this->Flash->error(__('The client could not be saved. Please, try again.'));
             }
         }
-        $clients = $this->Client->Clients->find('list', ['limit' => 200]);
+        $clients = $this->Clients->ParentClients->find('list', ['limit' => 200]);
         $this->set(compact('client', 'clients'));
         $this->set('_serialize', ['client']);
     }
@@ -104,8 +104,8 @@ class ClientController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $client = $this->Client->get($id);
-        if ($this->Client->delete($client)) {
+        $client = $this->Clients->get($id);
+        if ($this->Clients->delete($client)) {
             $this->Flash->success(__('The client has been deleted.'));
         } else {
             $this->Flash->error(__('The client could not be deleted. Please, try again.'));

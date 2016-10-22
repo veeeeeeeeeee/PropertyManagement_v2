@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Client Model
+ * Clients Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Clients
  *
@@ -19,7 +19,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Client[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Client findOrCreate($search, callable $callback = null)
  */
-class ClientTable extends Table
+class ClientsTable extends Table
 {
 
     /**
@@ -32,11 +32,12 @@ class ClientTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('client');
+        $this->table('clients');
         $this->displayField('client_id');
         $this->primaryKey('client_id');
 
-        $this->belongsTo('Clients', [
+        $this->belongsTo('ParentClients', [
+			'className' => 'Clients',
             'foreignKey' => 'client_id',
             'joinType' => 'INNER'
         ]);
@@ -88,7 +89,7 @@ class ClientTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['client_id'], 'Clients'));
+        $rules->add($rules->existsIn(['client_id'], 'ParentClients'));
 
         return $rules;
     }
