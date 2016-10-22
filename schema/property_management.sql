@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2016 at 03:49 PM
+-- Generation Time: Oct 22, 2016 at 04:25 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -72,10 +72,10 @@ INSERT INTO `features` (`feature_id`, `feature_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `propertys`
+-- Table structure for table `properties`
 --
 
-CREATE TABLE `propertys` (
+CREATE TABLE `properties` (
   `property_id` int(11) NOT NULL,
   `property_street` varchar(100) NOT NULL,
   `property_suburb` varchar(50) NOT NULL,
@@ -87,10 +87,10 @@ CREATE TABLE `propertys` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `propertys`
+-- Dumping data for table `properties`
 --
 
-INSERT INTO `propertys` (`property_id`, `property_street`, `property_suburb`, `property_state`, `property_pc`, `property_type`, `property_price`, `property_desc`) VALUES
+INSERT INTO `properties` (`property_id`, `property_street`, `property_suburb`, `property_state`, `property_pc`, `property_type`, `property_price`, `property_desc`) VALUES
 (2, '2 korowa street', 'sunshine', 'vic', '3020', 12, '1200000', 'some description'),
 (3, '9 flinders', 'melbourne cbd', 'vic', '3000', 13, '1100000', 'blah'),
 (6, '3 invermay grove', 'sunshine', 'vic', '3020', 12, '1500000', 'test description'),
@@ -99,10 +99,10 @@ INSERT INTO `propertys` (`property_id`, `property_street`, `property_suburb`, `p
 (9, '900 dandenong road', 'hawthorne', 'vic', '3122', 11, '0', '');
 
 --
--- Triggers `propertys`
+-- Triggers `properties`
 --
 DELIMITER $$
-CREATE TRIGGER `prop_del_trigger` BEFORE DELETE ON `propertys` FOR EACH ROW begin
+CREATE TRIGGER `prop_del_trigger` BEFORE DELETE ON `properties` FOR EACH ROW begin
 	delete from property_image where prop_id = old.prop_id;
     delete from property_feature where prop_id = old.prop_id;
 end
@@ -149,11 +149,11 @@ CREATE TABLE `types` (
 --
 
 INSERT INTO `types` (`type_id`, `type_name`) VALUES
-(10, 'house'),
+(10, 'houses'),
 (11, 'unit'),
 (12, 'apartment'),
 (13, 'shared house'),
-(14, 'factory');
+(15, 'factory');
 
 --
 -- Indexes for dumped tables
@@ -172,9 +172,9 @@ ALTER TABLE `features`
   ADD PRIMARY KEY (`feature_id`);
 
 --
--- Indexes for table `propertys`
+-- Indexes for table `properties`
 --
-ALTER TABLE `propertys`
+ALTER TABLE `properties`
   ADD PRIMARY KEY (`property_id`),
   ADD KEY `prop_type` (`property_type`);
 
@@ -213,9 +213,9 @@ ALTER TABLE `clients`
 ALTER TABLE `features`
   MODIFY `feature_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
--- AUTO_INCREMENT for table `propertys`
+-- AUTO_INCREMENT for table `properties`
 --
-ALTER TABLE `propertys`
+ALTER TABLE `properties`
   MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `property_images`
@@ -226,29 +226,29 @@ ALTER TABLE `property_images`
 -- AUTO_INCREMENT for table `types`
 --
 ALTER TABLE `types`
-  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `propertys`
+-- Constraints for table `properties`
 --
-ALTER TABLE `propertys`
-  ADD CONSTRAINT `propertys_ibfk_1` FOREIGN KEY (`property_type`) REFERENCES `types` (`type_id`);
+ALTER TABLE `properties`
+  ADD CONSTRAINT `properties_ibfk_1` FOREIGN KEY (`property_type`) REFERENCES `types` (`type_id`);
 
 --
 -- Constraints for table `property_features`
 --
 ALTER TABLE `property_features`
-  ADD CONSTRAINT `property_features_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `propertys` (`property_id`),
+  ADD CONSTRAINT `property_features_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `properties` (`property_id`),
   ADD CONSTRAINT `property_features_ibfk_2` FOREIGN KEY (`feature_id`) REFERENCES `features` (`feature_id`);
 
 --
 -- Constraints for table `property_images`
 --
 ALTER TABLE `property_images`
-  ADD CONSTRAINT `property_images_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `propertys` (`property_id`);
+  ADD CONSTRAINT `property_images_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `properties` (`property_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
