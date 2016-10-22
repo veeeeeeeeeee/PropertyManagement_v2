@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  * @property string $property_image_path
  * @property int $property_id
  *
- * @property \App\Model\Entity\PropertyImage $property_image
+ * @property \App\Model\Entity\PropertyImage $parent_property_image
  * @property \App\Model\Entity\Property $property
  */
 class PropertyImage extends Entity

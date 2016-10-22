@@ -36,10 +36,18 @@ class FeaturesTable extends Table
         $this->displayField('feature_id');
         $this->primaryKey('feature_id');
 
-        $this->belongsTo('Features', [
+        $this->belongsTo('ParentFeatures', [
+			'className' => 'Features',
             'foreignKey' => 'feature_id',
             'joinType' => 'INNER'
         ]);
+
+		$this->belongsToMany('Properties', [
+			'className' => 'Properties',
+			'joinTable' => 'property_features',
+			'foreignKey' => 'feature_id',
+			'targetForeignKey' => 'property_id'
+		]);
     }
 
     /**

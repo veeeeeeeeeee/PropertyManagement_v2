@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Propertys Model
+ * Properties Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Properties
  *
@@ -19,7 +19,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Property[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Property findOrCreate($search, callable $callback = null)
  */
-class PropertysTable extends Table
+class PropertiesTable extends Table
 {
 
     /**
@@ -32,14 +32,22 @@ class PropertysTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('propertys');
+        $this->table('properties');
         $this->displayField('property_id');
         $this->primaryKey('property_id');
 
-        $this->belongsTo('Properties', [
+        $this->belongsTo('ParentProperties', [
+			'className' => 'Properties',
             'foreignKey' => 'property_id',
             'joinType' => 'INNER'
         ]);
+
+		$this->belongsToMany('Features', [
+			'className' => 'Features',
+			'joinTable' => 'property_features',
+			'foreignKey' => 'property_id',
+			'targetForeignKey' => 'feature_id'
+		]);
     }
 
     /**
@@ -91,7 +99,7 @@ class PropertysTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['property_id'], 'Properties'));
+        $rules->add($rules->existsIn(['property_id'], 'ParentProperties'));
 
         return $rules;
     }
