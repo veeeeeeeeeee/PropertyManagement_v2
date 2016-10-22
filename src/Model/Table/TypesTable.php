@@ -36,7 +36,8 @@ class TypesTable extends Table
         $this->displayField('type_id');
         $this->primaryKey('type_id');
 
-        $this->belongsTo('Types', [
+        $this->belongsTo('ParentTypes', [
+			'className' => 'Types',
             'foreignKey' => 'type_id',
             'joinType' => 'INNER'
         ]);
@@ -66,7 +67,7 @@ class TypesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['type_id'], 'Types'));
+        $rules->add($rules->existsIn(['type_id'], 'ParentTypes'));
 
         return $rules;
     }
