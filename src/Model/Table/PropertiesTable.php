@@ -7,9 +7,9 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Propertys Model
+ * Properties Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Props
+ * @property \Cake\ORM\Association\BelongsTo $Properties
  *
  * @method \App\Model\Entity\Property get($primaryKey, $options = [])
  * @method \App\Model\Entity\Property newEntity($data = null, array $options = [])
@@ -19,7 +19,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Property[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Property findOrCreate($search, callable $callback = null)
  */
-class PropertysTable extends Table
+class PropertiesTable extends Table
 {
 
     /**
@@ -32,12 +32,13 @@ class PropertysTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('propertys');
-        $this->displayField('prop_id');
-        $this->primaryKey('prop_id');
+        $this->table('properties');
+        $this->displayField('property_id');
+        $this->primaryKey('property_id');
 
-        $this->belongsTo('Props', [
-            'foreignKey' => 'prop_id',
+        $this->belongsTo('ParentProperties', [
+			'className' => 'Properties',
+            'foreignKey' => 'property_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -51,33 +52,33 @@ class PropertysTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->requirePresence('prop_street', 'create')
-            ->notEmpty('prop_street');
+            ->requirePresence('property_street', 'create')
+            ->notEmpty('property_street');
 
         $validator
-            ->requirePresence('prop_suburb', 'create')
-            ->notEmpty('prop_suburb');
+            ->requirePresence('property_suburb', 'create')
+            ->notEmpty('property_suburb');
 
         $validator
-            ->requirePresence('prop_state', 'create')
-            ->notEmpty('prop_state');
+            ->requirePresence('property_state', 'create')
+            ->notEmpty('property_state');
 
         $validator
-            ->requirePresence('prop_pc', 'create')
-            ->notEmpty('prop_pc');
+            ->requirePresence('property_pc', 'create')
+            ->notEmpty('property_pc');
 
         $validator
-            ->integer('prop_type')
-            ->requirePresence('prop_type', 'create')
-            ->notEmpty('prop_type');
+            ->integer('property_type')
+            ->requirePresence('property_type', 'create')
+            ->notEmpty('property_type');
 
         $validator
-            ->decimal('price')
-            ->allowEmpty('price');
+            ->decimal('property_price')
+            ->allowEmpty('property_price');
 
         $validator
-            ->requirePresence('prop_desc', 'create')
-            ->notEmpty('prop_desc');
+            ->requirePresence('property_desc', 'create')
+            ->notEmpty('property_desc');
 
         return $validator;
     }
@@ -91,7 +92,7 @@ class PropertysTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['prop_id'], 'Props'));
+        $rules->add($rules->existsIn(['property_id'], 'Properties'));
 
         return $rules;
     }

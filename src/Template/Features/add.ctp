@@ -2,6 +2,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Features'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Parent Features'), ['controller' => 'Features', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Parent Feature'), ['controller' => 'Features', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="features form large-9 medium-8 columns content">
@@ -9,7 +11,7 @@
     <fieldset>
         <legend><?= __('Add Feature') ?></legend>
         <?php
-            echo $this->Form->input('feat_name');
+            echo $this->Form->input('feature_name');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

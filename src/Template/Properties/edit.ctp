@@ -3,19 +3,20 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $property->prop_id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $property->prop_id)]
+                ['action' => 'delete', $property->property_id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $property->property_id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Propertys'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Properties'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Properties'), ['controller' => 'Properties', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Property'), ['controller' => 'Properties', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="propertys form large-9 medium-8 columns content">
+<div class="properties form large-9 medium-8 columns content">
     <?= $this->Form->create($property) ?>
     <fieldset>
         <legend><?= __('Edit Property') ?></legend>
         <?php
-            echo $this->Form->input('property_id');
             echo $this->Form->input('property_street');
             echo $this->Form->input('property_suburb');
             echo $this->Form->input('property_state');

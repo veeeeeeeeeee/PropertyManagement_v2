@@ -4,8 +4,8 @@
         <li><?= $this->Html->link(__('New Property'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="propertys index large-9 medium-8 columns content">
-    <h3><?= __('Propertys') ?></h3>
+<div class="properties index large-9 medium-8 columns content">
+    <h3><?= __('Properties') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -20,9 +20,9 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($propertys as $property): ?>
+            <?php foreach ($properties as $property): ?>
             <tr>
-                <td><?= $this->Number->format($property->property_id) ?></td>
+                <td><?= $property->has('property') ? $this->Html->link($property->property->property_id, ['controller' => 'Properties', 'action' => 'view', $property->property->property_id]) : '' ?></td>
                 <td><?= h($property->property_street) ?></td>
                 <td><?= h($property->property_suburb) ?></td>
                 <td><?= h($property->property_state) ?></td>
@@ -30,9 +30,9 @@
                 <td><?= $this->Number->format($property->property_type) ?></td>
                 <td><?= $this->Number->format($property->property_price) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $property->prop_id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $property->prop_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $property->prop_id], ['confirm' => __('Are you sure you want to delete # {0}?', $property->prop_id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $property->property_id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $property->property_id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $property->property_id], ['confirm' => __('Are you sure you want to delete # {0}?', $property->property_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

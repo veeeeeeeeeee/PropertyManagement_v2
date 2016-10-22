@@ -17,10 +17,10 @@ class FeaturesFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'feat_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'feat_name' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'feature_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'feature_name' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['feat_id'], 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['feature_id'], 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -36,8 +36,8 @@ class FeaturesFixture extends TestFixture
      */
     public $records = [
         [
-            'feat_id' => 1,
-            'feat_name' => 'Lorem ipsum dolor sit amet'
+            'feature_id' => 1,
+            'feature_name' => 'Lorem ipsum dolor sit amet'
         ],
     ];
 }

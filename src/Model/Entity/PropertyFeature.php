@@ -6,9 +6,9 @@ use Cake\ORM\Entity;
 /**
  * PropertyFeature Entity
  *
- * @property int $prop_id
- * @property int $feat_id
- * @property int $no_feat
+ * @property int $property_id
+ * @property int $feature_id
+ * @property int $property_feature_no
  *
  * @property \App\Model\Entity\Property $property
  * @property \App\Model\Entity\Feature $feature
@@ -27,7 +27,7 @@ class PropertyFeature extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'prop_id' => false,
-        'feat_id' => false
+        'property_id' => false,
+        'feature_id' => false
     ];
 }

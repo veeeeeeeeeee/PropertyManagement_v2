@@ -25,7 +25,7 @@ class PropertysTableTest extends TestCase
      */
     public $fixtures = [
         'app.propertys',
-        'app.props'
+        'app.properties'
     ];
 
     /**

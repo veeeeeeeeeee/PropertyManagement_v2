@@ -4,10 +4,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * PropertysFixture
+ * PropertiesFixture
  *
  */
-class PropertysFixture extends TestFixture
+class PropertiesFixture extends TestFixture
 {
 
     /**
@@ -30,7 +30,7 @@ class PropertysFixture extends TestFixture
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['property_id'], 'length' => []],
-            'propertys_ibfk_1' => ['type' => 'foreign', 'columns' => ['property_type'], 'references' => ['types', 'type_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'properties_ibfk_1' => ['type' => 'foreign', 'columns' => ['property_type'], 'references' => ['types', 'type_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',

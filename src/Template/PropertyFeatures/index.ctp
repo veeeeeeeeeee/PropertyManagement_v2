@@ -2,8 +2,6 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Property Feature'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Propertys'), ['controller' => 'Propertys', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Property'), ['controller' => 'Propertys', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Features'), ['controller' => 'Features', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Feature'), ['controller' => 'Features', 'action' => 'add']) ?></li>
     </ul>
@@ -13,18 +11,18 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('prop_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('feat_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('no_feat') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('feature_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_feature_no') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($propertyFeatures as $propertyFeature): ?>
             <tr>
-                <td><?= $propertyFeature->has('property') ? $this->Html->link($propertyFeature->property->prop_id, ['controller' => 'Propertys', 'action' => 'view', $propertyFeature->property->prop_id]) : '' ?></td>
-                <td><?= $propertyFeature->has('feature') ? $this->Html->link($propertyFeature->feature->feat_id, ['controller' => 'Features', 'action' => 'view', $propertyFeature->feature->feat_id]) : '' ?></td>
-                <td><?= $this->Number->format($propertyFeature->no_feat) ?></td>
+                <td><?= $this->Number->format($propertyFeature->property_id) ?></td>
+                <td><?= $propertyFeature->has('feature') ? $this->Html->link($propertyFeature->feature->feature_id, ['controller' => 'Features', 'action' => 'view', $propertyFeature->feature->feature_id]) : '' ?></td>
+                <td><?= $this->Number->format($propertyFeature->property_feature_no) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $propertyFeature->prop_id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $propertyFeature->prop_id]) ?>

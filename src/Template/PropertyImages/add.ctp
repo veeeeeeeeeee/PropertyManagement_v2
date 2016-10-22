@@ -2,6 +2,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Property Images'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Property Images'), ['controller' => 'PropertyImages', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Property Image'), ['controller' => 'PropertyImages', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Propertys'), ['controller' => 'Propertys', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Property'), ['controller' => 'Propertys', 'action' => 'add']) ?></li>
     </ul>
@@ -11,8 +13,8 @@
     <fieldset>
         <legend><?= __('Add Property Image') ?></legend>
         <?php
-            echo $this->Form->input('img_path');
-            echo $this->Form->input('prop_id', ['options' => $propertys]);
+            echo $this->Form->input('property_image_path');
+            echo $this->Form->input('property_id', ['options' => $propertys]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

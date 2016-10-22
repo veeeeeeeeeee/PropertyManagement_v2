@@ -17,16 +17,16 @@ class PropertyFeaturesFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'prop_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'feat_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'no_feat' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'property_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'feature_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'property_feature_no' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
-            'feat_id' => ['type' => 'index', 'columns' => ['feat_id'], 'length' => []],
+            'feat_id' => ['type' => 'index', 'columns' => ['feature_id'], 'length' => []],
         ],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['prop_id', 'feat_id'], 'length' => []],
-            'property_features_ibfk_1' => ['type' => 'foreign', 'columns' => ['prop_id'], 'references' => ['propertys', 'prop_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'property_features_ibfk_2' => ['type' => 'foreign', 'columns' => ['feat_id'], 'references' => ['features', 'feat_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['property_id', 'feature_id'], 'length' => []],
+            'property_features_ibfk_1' => ['type' => 'foreign', 'columns' => ['property_id'], 'references' => ['properties', 'property_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'property_features_ibfk_2' => ['type' => 'foreign', 'columns' => ['feature_id'], 'references' => ['features', 'feature_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -42,9 +42,9 @@ class PropertyFeaturesFixture extends TestFixture
      */
     public $records = [
         [
-            'prop_id' => 1,
-            'feat_id' => 1,
-            'no_feat' => 1
+            'property_id' => 1,
+            'feature_id' => 1,
+            'property_feature_no' => 1
         ],
     ];
 }

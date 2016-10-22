@@ -6,10 +6,10 @@ use Cake\ORM\Entity;
 /**
  * Feature Entity
  *
- * @property int $feat_id
- * @property string $feat_name
+ * @property int $feature_id
+ * @property string $feature_name
  *
- * @property \App\Model\Entity\Feat $feat
+ * @property \App\Model\Entity\Feature $parent_feature
  */
 class Feature extends Entity
 {
@@ -25,6 +25,6 @@ class Feature extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'feat_id' => false
+        'feature_id' => false
     ];
 }

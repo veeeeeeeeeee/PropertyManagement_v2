@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * PropertyImages Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Imgs
+ * @property \Cake\ORM\Association\BelongsTo $PropertyImages
  * @property \Cake\ORM\Association\BelongsTo $Propertys
  *
  * @method \App\Model\Entity\PropertyImage get($primaryKey, $options = [])
@@ -34,15 +34,16 @@ class PropertyImagesTable extends Table
         parent::initialize($config);
 
         $this->table('property_images');
-        $this->displayField('img_id');
-        $this->primaryKey('img_id');
+        $this->displayField('property_image_id');
+        $this->primaryKey('property_image_id');
 
-        $this->belongsTo('Imgs', [
-            'foreignKey' => 'img_id',
+        $this->belongsTo('ParentPropertyImages', [
+			'className' => 'PropertyImages',
+            'foreignKey' => 'property_image_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Propertys', [
-            'foreignKey' => 'prop_id',
+            'foreignKey' => 'property_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -56,8 +57,8 @@ class PropertyImagesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->requirePresence('img_path', 'create')
-            ->notEmpty('img_path');
+            ->requirePresence('property_image_path', 'create')
+            ->notEmpty('property_image_path');
 
         return $validator;
     }
@@ -71,8 +72,8 @@ class PropertyImagesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['img_id'], 'Imgs'));
-        $rules->add($rules->existsIn(['prop_id'], 'Propertys'));
+        $rules->add($rules->existsIn(['property_image_id'], 'ParentPropertyImages'));
+        $rules->add($rules->existsIn(['property_id'], 'Propertys'));
 
         return $rules;
     }
