@@ -11,12 +11,12 @@
     <h3><?= h($feature->feat_id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Feat Name') ?></th>
-            <td><?= h($feature->feat_name) ?></td>
+            <th scope="row"><?= __('Feature Name') ?></th>
+            <td><?= h($feature->feature_name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Feat Id') ?></th>
-            <td><?= $this->Number->format($feature->feat_id) ?></td>
+            <th scope="row"><?= __('Feature Id') ?></th>
+            <td><?= $this->Number->format($feature->feature_id) ?></td>
         </tr>
     </table>
 </div>

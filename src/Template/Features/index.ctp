@@ -9,16 +9,16 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('feat_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('feat_name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('feature_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('feature_name') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($features as $feature): ?>
             <tr>
-                <td><?= $this->Number->format($feature->feat_id) ?></td>
-                <td><?= h($feature->feat_name) ?></td>
+                <td><?= $this->Number->format($feature->feature_id) ?></td>
+                <td><?= h($feature->feature_name) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $feature->feat_id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $feature->feat_id]) ?>

@@ -6,11 +6,11 @@ use Cake\ORM\Entity;
 /**
  * PropertyImage Entity
  *
- * @property int $img_id
- * @property string $img_path
- * @property int $prop_id
+ * @property int $property_image_id
+ * @property string $property_image_path
+ * @property int $property_id
  *
- * @property \App\Model\Entity\Img $img
+ * @property \App\Model\Entity\PropertyImage $property_image
  * @property \App\Model\Entity\Property $property
  */
 class PropertyImage extends Entity
@@ -27,6 +27,6 @@ class PropertyImage extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'img_id' => false
+        'property_image_id' => false
     ];
 }

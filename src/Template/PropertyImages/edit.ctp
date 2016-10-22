@@ -3,11 +3,13 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $propertyImage->img_id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $propertyImage->img_id)]
+                ['action' => 'delete', $propertyImage->property_image_id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $propertyImage->property_image_id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Property Images'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Property Images'), ['controller' => 'PropertyImages', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Property Image'), ['controller' => 'PropertyImages', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Propertys'), ['controller' => 'Propertys', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Property'), ['controller' => 'Propertys', 'action' => 'add']) ?></li>
     </ul>
@@ -17,8 +19,8 @@
     <fieldset>
         <legend><?= __('Edit Property Image') ?></legend>
         <?php
-            echo $this->Form->input('img_path');
-            echo $this->Form->input('prop_id', ['options' => $propertys]);
+            echo $this->Form->input('property_image_path');
+            echo $this->Form->input('property_id', ['options' => $propertys]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

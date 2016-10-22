@@ -17,15 +17,15 @@ class PropertyImagesFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'img_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'img_path' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
-        'prop_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'property_image_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'property_image_path' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'property_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
-            'prop_id' => ['type' => 'index', 'columns' => ['prop_id'], 'length' => []],
+            'prop_id' => ['type' => 'index', 'columns' => ['property_id'], 'length' => []],
         ],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['img_id'], 'length' => []],
-            'property_images_ibfk_1' => ['type' => 'foreign', 'columns' => ['prop_id'], 'references' => ['propertys', 'prop_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['property_image_id'], 'length' => []],
+            'property_images_ibfk_1' => ['type' => 'foreign', 'columns' => ['property_id'], 'references' => ['propertys', 'property_id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -41,9 +41,9 @@ class PropertyImagesFixture extends TestFixture
      */
     public $records = [
         [
-            'img_id' => 1,
-            'img_path' => 'Lorem ipsum dolor sit amet',
-            'prop_id' => 1
+            'property_image_id' => 1,
+            'property_image_path' => 'Lorem ipsum dolor sit amet',
+            'property_id' => 1
         ],
     ];
 }

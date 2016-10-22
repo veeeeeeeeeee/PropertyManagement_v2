@@ -25,8 +25,8 @@ class PropertyImagesTableTest extends TestCase
      */
     public $fixtures = [
         'app.property_images',
-        'app.imgs',
-        'app.propertys'
+        'app.propertys',
+        'app.properties'
     ];
 
     /**

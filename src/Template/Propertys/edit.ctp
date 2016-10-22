@@ -15,13 +15,14 @@
     <fieldset>
         <legend><?= __('Edit Property') ?></legend>
         <?php
-            echo $this->Form->input('prop_street');
-            echo $this->Form->input('prop_suburb');
-            echo $this->Form->input('prop_state');
-            echo $this->Form->input('prop_pc');
-            echo $this->Form->input('prop_type');
-            echo $this->Form->input('price');
-            echo $this->Form->input('prop_desc');
+            echo $this->Form->input('property_id');
+            echo $this->Form->input('property_street');
+            echo $this->Form->input('property_suburb');
+            echo $this->Form->input('property_state');
+            echo $this->Form->input('property_pc');
+            echo $this->Form->input('property_type');
+            echo $this->Form->input('property_price');
+            echo $this->Form->input('property_desc');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -19,7 +19,9 @@
     <fieldset>
         <legend><?= __('Edit Property Feature') ?></legend>
         <?php
-            echo $this->Form->input('no_feat');
+            echo $this->Form->input('property_id');
+            echo $this->Form->input('feature_id');
+            echo $this->Form->input('property_feature_no');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -17,8 +17,8 @@ class PropertyImagesControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.property_images',
-        'app.imgs',
-        'app.propertys'
+        'app.propertys',
+        'app.properties'
     ];
 
     /**

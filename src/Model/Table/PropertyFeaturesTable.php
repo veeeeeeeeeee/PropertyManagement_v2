@@ -38,11 +38,11 @@ class PropertyFeaturesTable extends Table
         $this->primaryKey(['prop_id', 'feat_id']);
 
         $this->belongsTo('Propertys', [
-            'foreignKey' => 'prop_id',
+            'foreignKey' => 'property_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Features', [
-            'foreignKey' => 'feat_id',
+            'foreignKey' => 'feature_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -56,9 +56,9 @@ class PropertyFeaturesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('no_feat')
-            ->requirePresence('no_feat', 'create')
-            ->notEmpty('no_feat');
+            ->integer('property_feature_no')
+            ->requirePresence('property_feature_no', 'create')
+            ->notEmpty('property_feature_no');
 
         return $validator;
     }
@@ -72,8 +72,8 @@ class PropertyFeaturesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['prop_id'], 'Propertys'));
-        $rules->add($rules->existsIn(['feat_id'], 'Features'));
+        $rules->add($rules->existsIn(['property_id'], 'Propertys'));
+        $rules->add($rules->existsIn(['feature_id'], 'Features'));
 
         return $rules;
     }

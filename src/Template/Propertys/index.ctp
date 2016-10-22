@@ -9,26 +9,26 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('prop_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('prop_street') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('prop_suburb') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('prop_state') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('prop_pc') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('prop_type') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('price') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_street') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_suburb') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_state') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_pc') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_type') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_price') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($propertys as $property): ?>
             <tr>
-                <td><?= $this->Number->format($property->prop_id) ?></td>
-                <td><?= h($property->prop_street) ?></td>
-                <td><?= h($property->prop_suburb) ?></td>
-                <td><?= h($property->prop_state) ?></td>
-                <td><?= h($property->prop_pc) ?></td>
-                <td><?= $this->Number->format($property->prop_type) ?></td>
-                <td><?= $this->Number->format($property->price) ?></td>
+                <td><?= $this->Number->format($property->property_id) ?></td>
+                <td><?= h($property->property_street) ?></td>
+                <td><?= h($property->property_suburb) ?></td>
+                <td><?= h($property->property_state) ?></td>
+                <td><?= h($property->property_pc) ?></td>
+                <td><?= $this->Number->format($property->property_type) ?></td>
+                <td><?= $this->Number->format($property->property_price) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $property->prop_id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $property->prop_id]) ?>

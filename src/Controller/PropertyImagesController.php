@@ -19,7 +19,7 @@ class PropertyImagesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Imgs', 'Propertys']
+            'contain' => ['ParentPropertyImages', 'Propertys']
         ];
         $propertyImages = $this->paginate($this->PropertyImages);
 
@@ -37,7 +37,7 @@ class PropertyImagesController extends AppController
     public function view($id = null)
     {
         $propertyImage = $this->PropertyImages->get($id, [
-            'contain' => ['Imgs', 'Propertys']
+            'contain' => ['ParentPropertyImages', 'Propertys']
         ]);
 
         $this->set('propertyImage', $propertyImage);
@@ -62,9 +62,9 @@ class PropertyImagesController extends AppController
                 $this->Flash->error(__('The property image could not be saved. Please, try again.'));
             }
         }
-        $imgs = $this->PropertyImages->Imgs->find('list', ['limit' => 200]);
+        $propertyImages = $this->PropertyImages->ParentPropertyImages->find('list', ['limit' => 200]);
         $propertys = $this->PropertyImages->Propertys->find('list', ['limit' => 200]);
-        $this->set(compact('propertyImage', 'imgs', 'propertys'));
+        $this->set(compact('propertyImage', 'propertyImages', 'propertys'));
         $this->set('_serialize', ['propertyImage']);
     }
 
@@ -90,9 +90,9 @@ class PropertyImagesController extends AppController
                 $this->Flash->error(__('The property image could not be saved. Please, try again.'));
             }
         }
-        $imgs = $this->PropertyImages->Imgs->find('list', ['limit' => 200]);
+        $propertyImages = $this->PropertyImages->ParentPropertyImages->find('list', ['limit' => 200]);
         $propertys = $this->PropertyImages->Propertys->find('list', ['limit' => 200]);
-        $this->set(compact('propertyImage', 'imgs', 'propertys'));
+        $this->set(compact('propertyImage', 'propertyImages', 'propertys'));
         $this->set('_serialize', ['propertyImage']);
     }
 

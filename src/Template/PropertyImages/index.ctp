@@ -11,22 +11,22 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('img_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('img_path') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('prop_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_image_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_image_path') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('property_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($propertyImages as $propertyImage): ?>
             <tr>
-                <td><?= $this->Number->format($propertyImage->img_id) ?></td>
-                <td><?= h($propertyImage->img_path) ?></td>
+                <td><?= $propertyImage->has('property_image') ? $this->Html->link($propertyImage->property_image->property_image_id, ['controller' => 'PropertyImages', 'action' => 'view', $propertyImage->property_image->property_image_id]) : '' ?></td>
+                <td><?= h($propertyImage->property_image_path) ?></td>
                 <td><?= $propertyImage->has('property') ? $this->Html->link($propertyImage->property->prop_id, ['controller' => 'Propertys', 'action' => 'view', $propertyImage->property->prop_id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $propertyImage->img_id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $propertyImage->img_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $propertyImage->img_id], ['confirm' => __('Are you sure you want to delete # {0}?', $propertyImage->img_id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $propertyImage->property_image_id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $propertyImage->property_image_id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $propertyImage->property_image_id], ['confirm' => __('Are you sure you want to delete # {0}?', $propertyImage->property_image_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

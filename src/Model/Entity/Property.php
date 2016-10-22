@@ -6,16 +6,16 @@ use Cake\ORM\Entity;
 /**
  * Property Entity
  *
- * @property int $prop_id
- * @property string $prop_street
- * @property string $prop_suburb
- * @property string $prop_state
- * @property string $prop_pc
- * @property int $prop_type
- * @property float $price
- * @property string $prop_desc
+ * @property int $property_id
+ * @property string $property_street
+ * @property string $property_suburb
+ * @property string $property_state
+ * @property string $property_pc
+ * @property int $property_type
+ * @property float $property_price
+ * @property string $property_desc
  *
- * @property \App\Model\Entity\Prop $prop
+ * @property \App\Model\Entity\Property $property
  */
 class Property extends Entity
 {
@@ -31,6 +31,6 @@ class Property extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'prop_id' => false
+        'property_id' => false
     ];
 }

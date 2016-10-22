@@ -18,8 +18,8 @@ class PropertyFeaturesControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.property_features',
         'app.propertys',
-        'app.features',
-        'app.feats'
+        'app.properties',
+        'app.features'
     ];
 
     /**

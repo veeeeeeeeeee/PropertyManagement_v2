@@ -19,7 +19,7 @@ class PropertysController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Props']
+            'contain' => ['Properties']
         ];
         $propertys = $this->paginate($this->Propertys);
 
@@ -37,7 +37,7 @@ class PropertysController extends AppController
     public function view($id = null)
     {
         $property = $this->Propertys->get($id, [
-            'contain' => ['Props']
+            'contain' => ['Properties']
         ]);
 
         $this->set('property', $property);
@@ -62,8 +62,8 @@ class PropertysController extends AppController
                 $this->Flash->error(__('The property could not be saved. Please, try again.'));
             }
         }
-        $props = $this->Propertys->Props->find('list', ['limit' => 200]);
-        $this->set(compact('property', 'props'));
+        $properties = $this->Propertys->Properties->find('list', ['limit' => 200]);
+        $this->set(compact('property', 'properties'));
         $this->set('_serialize', ['property']);
     }
 
@@ -89,8 +89,8 @@ class PropertysController extends AppController
                 $this->Flash->error(__('The property could not be saved. Please, try again.'));
             }
         }
-        $props = $this->Propertys->Props->find('list', ['limit' => 200]);
-        $this->set(compact('property', 'props'));
+        $properties = $this->Propertys->Properties->find('list', ['limit' => 200]);
+        $this->set(compact('property', 'properties'));
         $this->set('_serialize', ['property']);
     }
 

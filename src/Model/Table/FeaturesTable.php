@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Features Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Feats
+ * @property \Cake\ORM\Association\BelongsTo $Features
  *
  * @method \App\Model\Entity\Feature get($primaryKey, $options = [])
  * @method \App\Model\Entity\Feature newEntity($data = null, array $options = [])
@@ -33,11 +33,11 @@ class FeaturesTable extends Table
         parent::initialize($config);
 
         $this->table('features');
-        $this->displayField('feat_id');
-        $this->primaryKey('feat_id');
+        $this->displayField('feature_id');
+        $this->primaryKey('feature_id');
 
-        $this->belongsTo('Feats', [
-            'foreignKey' => 'feat_id',
+        $this->belongsTo('Features', [
+            'foreignKey' => 'feature_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -51,8 +51,8 @@ class FeaturesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->requirePresence('feat_name', 'create')
-            ->notEmpty('feat_name');
+            ->requirePresence('feature_name', 'create')
+            ->notEmpty('feature_name');
 
         return $validator;
     }
@@ -66,7 +66,7 @@ class FeaturesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['feat_id'], 'Feats'));
+        $rules->add($rules->existsIn(['feature_id'], 'Features'));
 
         return $rules;
     }

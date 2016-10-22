@@ -9,7 +9,8 @@
     <fieldset>
         <legend><?= __('Add Feature') ?></legend>
         <?php
-            echo $this->Form->input('feat_name');
+            echo $this->Form->input('feature_id');
+            echo $this->Form->input('feature_name');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
