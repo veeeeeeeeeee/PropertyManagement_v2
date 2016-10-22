@@ -36,7 +36,8 @@ class FeaturesTable extends Table
         $this->displayField('feature_id');
         $this->primaryKey('feature_id');
 
-        $this->belongsTo('Features', [
+        $this->belongsTo('ParentFeatures', [
+			'className' => 'Features',
             'foreignKey' => 'feature_id',
             'joinType' => 'INNER'
         ]);
@@ -66,7 +67,7 @@ class FeaturesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['feature_id'], 'Features'));
+        $rules->add($rules->existsIn(['feature_id'], 'ParentFeatures'));
 
         return $rules;
     }

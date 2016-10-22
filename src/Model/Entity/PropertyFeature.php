@@ -27,7 +27,7 @@ class PropertyFeature extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'prop_id' => false,
-        'feat_id' => false
+        'property_id' => false,
+        'feature_id' => false
     ];
 }

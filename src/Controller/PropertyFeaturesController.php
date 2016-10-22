@@ -19,7 +19,7 @@ class PropertyFeaturesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Propertys', 'Features']
+            'contain' => ['Properties', 'Features']
         ];
         $propertyFeatures = $this->paginate($this->PropertyFeatures);
 
@@ -37,7 +37,7 @@ class PropertyFeaturesController extends AppController
     public function view($id = null)
     {
         $propertyFeature = $this->PropertyFeatures->get($id, [
-            'contain' => ['Propertys', 'Features']
+            'contain' => ['Properties', 'Features']
         ]);
 
         $this->set('propertyFeature', $propertyFeature);
@@ -62,7 +62,7 @@ class PropertyFeaturesController extends AppController
                 $this->Flash->error(__('The property feature could not be saved. Please, try again.'));
             }
         }
-        $propertys = $this->PropertyFeatures->Propertys->find('list', ['limit' => 200]);
+        $propertys = $this->PropertyFeatures->Properties->find('list', ['limit' => 200]);
         $features = $this->PropertyFeatures->Features->find('list', ['limit' => 200]);
         $this->set(compact('propertyFeature', 'propertys', 'features'));
         $this->set('_serialize', ['propertyFeature']);
@@ -90,7 +90,7 @@ class PropertyFeaturesController extends AppController
                 $this->Flash->error(__('The property feature could not be saved. Please, try again.'));
             }
         }
-        $propertys = $this->PropertyFeatures->Propertys->find('list', ['limit' => 200]);
+        $propertys = $this->PropertyFeatures->Properties->find('list', ['limit' => 200]);
         $features = $this->PropertyFeatures->Features->find('list', ['limit' => 200]);
         $this->set(compact('propertyFeature', 'propertys', 'features'));
         $this->set('_serialize', ['propertyFeature']);
